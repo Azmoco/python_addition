@@ -1,4 +1,4 @@
-"""Ce programme est un jeu dans lequel 10 additions, soustractions ou multiplications seront proposées.
+"""Ce programme est un jeu où 10 additions, soustractions ou multiplications seront proposées.
 l'utilisateur doit répondre le mieux possible aux calculs. le score est donné a la fin.
 Auteurs : Corentin et Thibault"""
 
