@@ -3,6 +3,7 @@ soustractions ou multiplications. il faut répondre juste un maximum. le score e
 
 from random import randint
 import sys
+import time
 
 def operation():
     """demande le type d'opérations"""
@@ -98,6 +99,7 @@ def relancer_programme():
     if demande_relance == "non":
         demande_relance = None
         print("Au revoir, à bientôt.")
+        time.sleep(3)
         sys.exit()
     main()
 
