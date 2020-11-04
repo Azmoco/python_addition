@@ -1,6 +1,10 @@
+"""Ce programme est un jeu dans lequel vous aurez 10 additions,
+soustractions ou multiplications. il faut répondre juste un maximum. le score est donné a la fin."""
+
 from random import randint
 
 def operation():
+    """demande le type d'opérations"""
     type_operation = 0
     while type_operation != "addition" and type_operation != "soustraction" and type_operation != "multiplication":
         type_operation = input("""quelle opération voulez-vous faire ?
@@ -18,7 +22,7 @@ Pour obtenir 10 multiplication, ecrivez "multiplication"\n
 
 
 def lit_nombre_chiffre():
-    """a"""
+    """verifie si le nombre est bien un entier qui est suppérieur à 0"""
     nombre_chiffre = input("Combien voulez-vous de chiffre dans vos opérations?\n")
     valeur_max = 0
     while nombre_chiffre == "0" or not nombre_chiffre.isnumeric():
@@ -29,6 +33,7 @@ def lit_nombre_chiffre():
 
 
 def affiche_addition(valeur_max):
+    """affichage de 10 additions"""
     reponses_juste = 0
     for i in range(10):
         valeur1 = randint(0, valeur_max)
@@ -39,13 +44,14 @@ def affiche_addition(valeur_max):
         while reponse_utilisateur.isdigit() == False: #verification si reponse_utilisateur ne comporte que des chiffres
             print("""Erreur_3: Votre réponse est invalide,
 merci d'écrire uniquement des chiffres ou nombres""")
-            reponse_utilisateur = input("Quel est le résultat de ce calcul ?")
+            reponse_utilisateur = input("Quel est le résultat de ce calcul ? ")
         if int(reponse_utilisateur) == int(calcul):
             reponses_juste += 1
     return reponses_juste
 
 
 def affiche_soustraction(valeur_max):
+    """affichage de 10 soustraction"""
     reponses_juste = 0
     for i in range(10):
         valeur1 = randint(0, valeur_max)
@@ -67,6 +73,7 @@ merci d'écrire uniquement des chiffres ou nombres""")
     return reponses_juste
 
 def affiche_multiplication(valeur_max):
+    """affichage de 10 multiplication"""
     reponses_juste = 0
     for i in range(10):
         valeur1 = randint(0, valeur_max)
@@ -86,6 +93,7 @@ merci d'écrire uniquement des chiffres ou nombres""")
 
 
 def main():
+    """fonction globale avec pour objectif de faire marcher le programme"""
     type_operation = operation()
 
     nombre_chiffre = lit_nombre_chiffre()
@@ -101,4 +109,5 @@ def main():
     print(str(affiche_operation))
 
 main()
-#décomposer les affiche_addition/affiche_soustraction/affiche_multiplication car ces fonctions doivent juste afficher
+#décomposer les affiche_addition/affiche_soustraction/affiche_multiplication
+#car ces fonctions doivent juste afficher
