@@ -1,5 +1,6 @@
-"""Ce programme est un jeu dans lequel vous aurez 10 additions,
-soustractions ou multiplications. il faut répondre juste un maximum. le score est donné a la fin."""
+"""Ce programme est un jeu dans lequel 10 additions, soustractions ou multiplications seront proposées.
+l'utilisateur doit répondre le mieux possible aux calculs. le score est donné a la fin.
+Auteurs : Corentin et Thibault"""
 
 from random import randint
 import sys
