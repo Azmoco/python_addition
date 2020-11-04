@@ -41,7 +41,7 @@ def affiche_addition(valeur_max):
         calcul = valeur1 + valeur2
         print("\n" + str(valeur1) + " + " + str(valeur2))
         reponse_utilisateur = input("Quel est le résultat de ce calcul ? ")
-        while reponse_utilisateur.isdigit() == False: #verif reponse_utilisateur soit des chiffres
+        while not reponse_utilisateur.isdigit(): #verif reponse_utilisateur soit des chiffres
             print("""Erreur_3: Votre réponse est invalide,
 merci d'écrire uniquement des chiffres ou nombres""")
             reponse_utilisateur = input("Quel est le résultat de ce calcul ? ")
@@ -61,7 +61,7 @@ def affiche_soustraction(valeur_max):
         calcul = valeur1 - valeur2
         print("\n" + str(valeur1) + " - " + str(valeur2))
         reponse_utilisateur = input("Quel est le résultat de ce calcul ? ")
-        while reponse_utilisateur.isdigit() == False:
+        while not reponse_utilisateur.isdigit():
             #verification si reponse_utilisateur ne comporte que des chiffres
             print("""Erreur_3: Votre réponse est invalide,
 merci d'écrire uniquement des chiffres ou nombres""")
@@ -80,7 +80,7 @@ def affiche_multiplication(valeur_max):
         print("\n" + str(valeur1) + " x " + str(valeur2))
         #utilisation de "x" pour que l'utilisateur comprenne * plus facilement
         reponse_utilisateur = input("Quel est le résultat de ce calcul ? ")
-        while reponse_utilisateur.isdigit() == False:
+        while not reponse_utilisateur.isdigit():
             #verification si reponse_utilisateur ne comporte que des chiffres
             print("""Erreur_3: Votre réponse est invalide,
 merci d'écrire uniquement des chiffres ou nombres""")
