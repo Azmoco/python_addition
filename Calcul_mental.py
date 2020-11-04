@@ -2,6 +2,7 @@
 soustractions ou multiplications. il faut répondre juste un maximum. le score est donné a la fin."""
 
 from random import randint
+import sys
 
 def operation():
     """demande le type d'opérations"""
@@ -95,9 +96,9 @@ def relancer_programme():
         print("""Veuillez répondre "oui" ou "non".""")
         demande_relance = input("Voulez-vous relancer le programme ?\n")
     if demande_relance == "non":
-        relance = None
+        demande_relance = None
         print("Au revoir, à bientôt.")
-        exit()
+        sys.exit()
     main()
 
 
