@@ -91,13 +91,15 @@ merci d'écrire uniquement des chiffres ou nombres""")
 def relancer_programme():
     """sert à relancer le programme si l'utilisateur le souhaite"""
     demande_relance = input("Voulez-vous relancer le programme ?\n")
-    while demande_relance not in ('Oui', 'Non'):
-        print("""Veuillez répondre "Oui" ou "Non".""")
+    while demande_relance not in ('oui', 'non'):
+        print("""Veuillez répondre "oui" ou "non".""")
         demande_relance = input("Voulez-vous relancer le programme ?\n")
-    if demande_relance == "Oui":
-        relance = main()
-    relance = None
-    return relance
+    if demande_relance == "non":
+        relance = None
+        print("Au revoir, à bientôt.")
+        exit()
+    main()
+
 
 def main():
     """fonction globale avec pour objectif de faire fonctionner le programme"""
@@ -114,8 +116,8 @@ def main():
         affiche_operation = affiche_multiplication(valeur_max)
 
     print(str(affiche_operation))
-    relancer_programme()
-    print("Au revoir, à bientôt.")
+    print(relancer_programme())
+
 
 main()
 #décomposer les affiche_... car ces fonctions doivent juste afficher
