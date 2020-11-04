@@ -92,6 +92,7 @@ merci d'écrire uniquement des chiffres ou nombres""")
     return reponses_juste
 
 def relancer_programme():
+    """sert à relancer le programme si l'utilisateur le souhaite"""
     demande_relance = input("Voulez-vous relancer le programme ?\n")
     while demande_relance != "Oui" and demande_relance != "Non" :
         print("""Veuillez répondre "Oui" ou "Non".""")
