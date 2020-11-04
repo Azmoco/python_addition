@@ -24,7 +24,6 @@ Pour obtenir 10 multiplication, ecrivez "multiplication"\n
 def lit_nombre_chiffre():
     """verifie si le nombre est bien un entier qui est suppérieur à 0"""
     nombre_chiffre = input("Combien voulez-vous de chiffre dans vos opérations?\n")
-    valeur_max = 0
     while nombre_chiffre == "0" or not nombre_chiffre.isnumeric():
         print("Erreur_2: Veuillez entrer un nombre entier supérieur à 0")
         nombre_chiffre = input("Combien voulez-vous de chiffre dans vos opérations?\n")
