@@ -91,9 +91,18 @@ merci d'écrire uniquement des chiffres ou nombres""")
             reponses_juste += 1
     return reponses_juste
 
+def relancer_programme():
+    demande_relance = input("Voulez-vous relancer le programme ?\n")
+    while demande_relance != "Oui" and demande_relance != "Non" :
+        print("""Veuillez répondre "Oui" ou "Non".""")
+        demande_relance = input("Voulez-vous relancer le programme ?\n")
+    if demande_relance == "Oui":
+        relance = main()
+    relance = None
+    return relance
 
 def main():
-    """fonction globale avec pour objectif de faire marcher le programme"""
+    """fonction globale avec pour objectif de faire fonctionner le programme"""
     type_operation = operation()
 
     nombre_chiffre = lit_nombre_chiffre()
@@ -107,6 +116,8 @@ def main():
         affiche_operation = affiche_multiplication(valeur_max)
 
     print(str(affiche_operation))
+    relance = relancer_programme()
+    print("Au revoir, à bientôt.")
 
 main()
 #décomposer les affiche_addition/affiche_soustraction/affiche_multiplication
