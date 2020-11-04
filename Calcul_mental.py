@@ -56,9 +56,7 @@ def affiche_soustraction(valeur_max):
         valeur1 = randint(0, valeur_max)
         valeur2 = randint(0, valeur_max)
         if valeur1 < valeur2:
-            valeur_echange = valeur1
-            valeur1 = valeur2
-            valeur2 = valeur_echange
+            valeur1, valeur2 = valeur2, valeur1
         calcul = valeur1 - valeur2
         print("\n" + str(valeur1) + " - " + str(valeur2))
         reponse_utilisateur = input("Quel est le résultat de ce calcul ? ")
