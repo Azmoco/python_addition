@@ -10,7 +10,7 @@ def operation():
     """demande le type d'opérations"""
     type_operation = 0
     while type_operation not in ('addition', 'soustraction', 'multiplication'):
-        type_operation = input("""quelle opération voulez-vous faire ?
+        type_operation = input("""Quelle opération voulez-vous faire ?
 (tapez aide pour ouvrir une page d'aide)\n""")
         if type_operation == "aide":
             print("""
@@ -34,10 +34,11 @@ def lit_nombre_chiffre():
     return nombre_chiffre
 
 
-def affiche_addition(valeur_max):
+def affiche_addition(valeur_max, temps_maximum):
     """affichage de 10 additions"""
     reponses_juste = 0
-    for _ in range(10):
+    compteur = 0
+    while temps_maximum > time.time() and compteur < 10:
         valeur1 = randint(0, valeur_max)
         valeur2 = randint(0, valeur_max)
         calcul = valeur1 + valeur2
@@ -47,15 +48,20 @@ def affiche_addition(valeur_max):
             print("""Erreur_3: Votre réponse est invalide,
 merci d'écrire uniquement des chiffres ou nombres""")
             reponse_utilisateur = input("Quel est le résultat de ce calcul ? ")
+        if time.time() > temps_maximum:
+            a_temps()
+            break
         if int(reponse_utilisateur) == int(calcul):
             reponses_juste += 1
-    return reponses_juste
+        compteur += 1
+    return("""Votre nombre de reponse(s) juste(s) est {}\n""".format(reponses_juste))
 
 
-def affiche_soustraction(valeur_max):
+def affiche_soustraction(valeur_max, temps_maximum):
     """affichage de 10 soustraction"""
     reponses_juste = 0
-    for _ in range(10):
+    compteur = 0
+    while temps_maximum > time.time() and compteur < 10:
         valeur1 = randint(0, valeur_max)
         valeur2 = randint(0, valeur_max)
         if valeur1 < valeur2:
@@ -68,14 +74,19 @@ def affiche_soustraction(valeur_max):
             print("""Erreur_3: Votre réponse est invalide,
 merci d'écrire uniquement des chiffres ou nombres""")
             reponse_utilisateur = input("Quel est le résultat de ce calcul ? ")
+        if time.time() > temps_maximum:
+            a_temps()
+            break
         if int(reponse_utilisateur) == int(calcul):
             reponses_juste += 1
-    return reponses_juste
+        compteur += 1
+    return ("""Votre nombre de reponse(s) juste(s) est {}\n""".format(reponses_juste))
 
-def affiche_multiplication(valeur_max):
+def affiche_multiplication(valeur_max, temps_maximum):
     """affichage de 10 multiplication"""
     reponses_juste = 0
-    for _ in range(10):
+    compteur = 0
+    while temps_maximum > time.time() and compteur < 10:
         valeur1 = randint(0, valeur_max)
         valeur2 = randint(0, valeur_max)
         calcul = valeur1 * valeur2
@@ -87,9 +98,13 @@ def affiche_multiplication(valeur_max):
             print("""Erreur_3: Votre réponse est invalide,
 merci d'écrire uniquement des chiffres ou nombres""")
             reponse_utilisateur = input("Quel est le résultat de ce calcul ? ")
+        if time.time() > temps_maximum:
+            a_temps()
+            break
         if int(reponse_utilisateur) == int(calcul):
             reponses_juste += 1
-    return reponses_juste
+        compteur += 1
+    return ("""Votre nombre de reponse(s) juste(s) est {}\n""".format(reponses_juste))
 
 def relancer_programme():
     """sert à relancer le programme si l'utilisateur le souhaite"""
@@ -104,6 +119,32 @@ def relancer_programme():
         sys.exit()
     main()
 
+def lit_temps_voulu():
+    """a"""
+    temps_voulu = input("Combien voulez-vous de temps (en secondes) pour faire vos calculs?\n")
+    while not temps_voulu.isnumeric():
+        print("Veuillez entrer un nombre entier supérieur ou égal à 5")
+        temps_voulu = input("Combien voulez-vous de temps (en secondes) pour faire vos calculs?\n")
+    temps_voulu = int(temps_voulu)
+    while temps_voulu < 5:
+        print("Veuillez entrer un nombre entier supérieur ou égal à 5")
+        temps_voulu = input("Combien voulez-vous de temps (en secondes) pour faire vos calculs?\n")
+        temps_voulu = int(temps_voulu)
+    return temps_voulu
+
+def a_temps():
+    message = randint(0, 100)
+    if message <= 25:
+        print("\nVous n'avez plus de temps !\n")
+    if message <= 50 and message > 25:
+        print ("\nLe temps imparti est arrivé à expiration\n")
+    if message <= 75 and message > 50:
+        print ("\nVous etes arrivé a la fin du temps imparti !\n")
+    if message <= 99 and message > 75:
+        print ("\nVous n'avez pas eu le temps de finir, dommage :(\n")
+    if message == 100:
+        print ("""\nSongez a arreter les mathématiques et mettez vous au
+français, vous n'avez meme pas eu le temps de finir\n""")
 
 def main():
     """fonction globale avec pour objectif de faire fonctionner le programme"""
@@ -112,14 +153,19 @@ def main():
     nombre_chiffre = lit_nombre_chiffre()
     valeur_max = int(nombre_chiffre * "9")
 
+    temps_voulu = lit_temps_voulu()
+    temps_départ = time.time()
+    temps_maximum = temps_départ + temps_voulu
+
     if type_operation == "addition":
-        affiche_operation = affiche_addition(valeur_max)
+        affiche_operation = affiche_addition(valeur_max, temps_maximum)
     elif type_operation == "soustraction":
-        affiche_operation = affiche_soustraction(valeur_max)
+        affiche_operation = affiche_soustraction(valeur_max, temps_maximum)
     elif type_operation == "multiplication":
-        affiche_operation = affiche_multiplication(valeur_max)
+        affiche_operation = affiche_multiplication(valeur_max, temps_maximum)
 
     print(str(affiche_operation))
+
     print(relancer_programme())
 
 
