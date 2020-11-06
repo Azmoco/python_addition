@@ -25,7 +25,7 @@ Pour obtenir 10 multiplication, ecrivez "multiplication"\n
 
 
 def lit_nombre_chiffre():
-    """verifie si le nombre est bien un entier qui est suppérieur à 0"""
+    """demande le nombre de chiffre voulu pour les operations"""
     nombre_chiffre = input("Combien voulez-vous de chiffre dans vos opérations?\n")
     while nombre_chiffre == "0" or not nombre_chiffre.isnumeric():
         print("Erreur_2: Veuillez entrer un nombre entier supérieur à 0")
@@ -49,7 +49,7 @@ def affiche_addition(valeur_max, temps_maximum):
 merci d'écrire uniquement des chiffres ou nombres""")
             reponse_utilisateur = input("Quel est le résultat de ce calcul ? ")
         if time.time() > temps_maximum:
-            a_temps()
+            affiche_message()
             break
         if int(reponse_utilisateur) == int(calcul):
             reponses_juste += 1
@@ -75,7 +75,7 @@ def affiche_soustraction(valeur_max, temps_maximum):
 merci d'écrire uniquement des chiffres ou nombres""")
             reponse_utilisateur = input("Quel est le résultat de ce calcul ? ")
         if time.time() > temps_maximum:
-            a_temps()
+            affiche_message()
             break
         if int(reponse_utilisateur) == int(calcul):
             reponses_juste += 1
@@ -99,7 +99,7 @@ def affiche_multiplication(valeur_max, temps_maximum):
 merci d'écrire uniquement des chiffres ou nombres""")
             reponse_utilisateur = input("Quel est le résultat de ce calcul ? ")
         if time.time() > temps_maximum:
-            a_temps()
+            affiche_message()
             break
         if int(reponse_utilisateur) == int(calcul):
             reponses_juste += 1
@@ -120,7 +120,7 @@ def relancer_programme():
     main()
 
 def lit_temps_voulu():
-    """a"""
+    """demande le temps voulu pour realiser les calculs"""
     temps_voulu = input("Combien voulez-vous de temps (en secondes) pour faire vos calculs?\n")
     while not temps_voulu.isnumeric():
         print("Veuillez entrer un nombre entier supérieur ou égal à 5")
@@ -132,18 +132,19 @@ def lit_temps_voulu():
         temps_voulu = int(temps_voulu)
     return temps_voulu
 
-def a_temps():
+def affiche_message():
+    """affiche un message lorsque le temps est ecoule"""
     message = randint(0, 100)
     if message <= 25:
         print("\nVous n'avez plus de temps !\n")
     if message <= 50 and message > 25:
-        print ("\nLe temps imparti est arrivé à expiration\n")
+        print("\nLe temps imparti est arrivé à expiration\n")
     if message <= 75 and message > 50:
-        print ("\nVous etes arrivé a la fin du temps imparti !\n")
+        print("\nVous etes arrivé a la fin du temps imparti !\n")
     if message <= 99 and message > 75:
-        print ("\nVous n'avez pas eu le temps de finir, dommage :(\n")
+        print("\nVous n'avez pas eu le temps de finir, dommage :(\n")
     if message == 100:
-        print ("""\nSongez a arreter les mathématiques et mettez vous au
+        print("""\nSongez a arreter les mathématiques et mettez vous au
 français, vous n'avez meme pas eu le temps de finir\n""")
 
 def main():
@@ -154,8 +155,8 @@ def main():
     valeur_max = int(nombre_chiffre * "9")
 
     temps_voulu = lit_temps_voulu()
-    temps_départ = time.time()
-    temps_maximum = temps_départ + temps_voulu
+    temps_depart = time.time()
+    temps_maximum = temps_depart + temps_voulu
 
     if type_operation == "addition":
         affiche_operation = affiche_addition(valeur_max, temps_maximum)
