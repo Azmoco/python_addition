@@ -44,7 +44,8 @@ def affiche_addition(valeur_max, temps_maximum):
         calcul = valeur1 + valeur2
         print("\n" + str(valeur1) + " + " + str(valeur2))
         reponse_utilisateur = input("Quel est le résultat de ce calcul ? ")
-        while not reponse_utilisateur.isdigit(): #verif reponse_utilisateur soit des chiffres
+        while not reponse_utilisateur.isdigit():
+        #verif reponse_utilisateur soit des chiffres
             print("""Erreur_3: Votre réponse est invalide,
 merci d'écrire uniquement des chiffres ou nombres""")
             reponse_utilisateur = input("Quel est le résultat de ce calcul ? ")
@@ -70,7 +71,6 @@ def affiche_soustraction(valeur_max, temps_maximum):
         print("\n" + str(valeur1) + " - " + str(valeur2))
         reponse_utilisateur = input("Quel est le résultat de ce calcul ? ")
         while not reponse_utilisateur.isdigit():
-            #verification si reponse_utilisateur ne comporte que des chiffres
             print("""Erreur_3: Votre réponse est invalide,
 merci d'écrire uniquement des chiffres ou nombres""")
             reponse_utilisateur = input("Quel est le résultat de ce calcul ? ")
@@ -94,7 +94,6 @@ def affiche_multiplication(valeur_max, temps_maximum):
         #utilisation de "x" pour que l'utilisateur comprenne * plus facilement
         reponse_utilisateur = input("Quel est le résultat de ce calcul ? ")
         while not reponse_utilisateur.isdigit():
-            #verification si reponse_utilisateur ne comporte que des chiffres
             print("""Erreur_3: Votre réponse est invalide,
 merci d'écrire uniquement des chiffres ou nombres""")
             reponse_utilisateur = input("Quel est le résultat de ce calcul ? ")
@@ -144,8 +143,9 @@ def affiche_message():
     if 75 < message <= 99:
         print("\nVous n'avez pas eu le temps de finir, dommage :(\n")
     if message == 100:
-        print("""\nSongez a arreter les mathématiques et mettez vous au
-français, vous n'avez meme pas eu le temps de finir\n""")
+        print("""\nBravo vous avez reussi... Ah non excusez-moi
+        je me suis trompe, le temps est ecoule'\n""")
+    # easter egg
 
 def main():
     """fonction globale avec pour objectif de faire fonctionner le programme"""
