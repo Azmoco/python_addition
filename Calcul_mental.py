@@ -137,11 +137,11 @@ def affiche_message():
     message = randint(0, 100)
     if message <= 25:
         print("\nVous n'avez plus de temps !\n")
-    if message <= 50 and message > 25:
+    if 25 < message <= 50:
         print("\nLe temps imparti est arrivé à expiration\n")
-    if message <= 75 and message > 50:
+    if 50 < message <= 75:
         print("\nVous etes arrivé a la fin du temps imparti !\n")
-    if message <= 99 and message > 75:
+    if 75 < message <= 99:
         print("\nVous n'avez pas eu le temps de finir, dommage :(\n")
     if message == 100:
         print("""\nSongez a arreter les mathématiques et mettez vous au
