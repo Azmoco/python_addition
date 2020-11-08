@@ -33,6 +33,31 @@ def lit_nombre_chiffre():
     nombre_chiffre = int(nombre_chiffre)
     return nombre_chiffre
 
+def lit_pseudo():
+    """demande le pseudo de l'utilisateur"""
+    pseudo = input("Quel est votre pseudo?\n")
+    while len(pseudo) < 3 or ' ' in pseudo:
+        print("Veuillez entrer un pseudo d'au moins 3 caracteres et sans espace")
+        pseudo = input("Quel est votre pseudo?\n")
+    return pseudo
+
+def lit_ancien_score(pseudo):
+    """donne l'ancien score"""
+    apparition_pseudo = 0
+    fichier = open('scores.txt', 'r', encoding='utf8')
+    liste_ligne = fichier.readlines()
+    for ligne in liste_ligne:
+        ligne = ligne.split()
+        if pseudo == ligne[0]:
+            ancien_score = int(ligne[len(ligne) - 1])
+            ligne = " ".join(ligne)
+            print(ligne)
+            apparition_pseudo += 1
+    if apparition_pseudo == 0:
+        print("Bienvenue nouveau joueur!")
+        ancien_score = 0
+    fichier.close()
+    return ancien_score
 
 def donne_reponse_addition(valeur_max, temps_maximum):
     """affiche les 10 additions puis donne le nombre de bonnes reponses"""
@@ -55,7 +80,7 @@ merci d'écrire uniquement des chiffres ou nombres""")
         if int(reponse_utilisateur) == int(calcul):
             reponses_justes += 1
         compteur += 1
-    return("""Votre nombre de reponse(s) juste(s) est {}\n""".format(reponses_justes))
+    return reponses_justes
 
 
 def donne_reponse_soustraction(valeur_max, temps_maximum):
@@ -80,7 +105,7 @@ merci d'écrire uniquement des chiffres ou nombres""")
         if int(reponse_utilisateur) == int(calcul):
             reponses_justes += 1
         compteur += 1
-    return ("""Votre nombre de reponse(s) juste(s) est {}\n""".format(reponses_justes))
+    return reponses_justes
 
 def donne_reponse_multiplication(valeur_max, temps_maximum):
     """affiche les 10 multiplications puis donne le nombre de bonnes reponses"""
@@ -103,7 +128,7 @@ merci d'écrire uniquement des chiffres ou nombres""")
         if int(reponse_utilisateur) == int(calcul):
             reponses_justes += 1
         compteur += 1
-    return ("""Votre nombre de reponse(s) juste(s) est {}\n""".format(reponses_justes))
+    return reponses_justes
 
 def relancer_programme():
     """sert à relancer le programme si l'utilisateur le souhaite"""
@@ -147,16 +172,39 @@ def affiche_message():
         je me suis trompe, le temps est ecoule'\n""")
     # easter egg
 
+def ecrit_nouveau_score(pseudo, nouveau_score):
+    """ecrit le nouveau score dans le fichier"""
+    fichier = open('scores.txt', 'r', encoding='utf8')
+    lignes = fichier.readlines()
+    fichier.close()
+    chaine = str(pseudo) + " votre score est " + str(nouveau_score) + "\n"
+    for i in range(len(lignes)):
+        lig = lignes[i].split()
+        if pseudo == lig[0]:
+            lignes[i] = chaine
+            fichier = open('scores.txt', 'w', encoding='utf8')
+            fichier.write("".join(lignes))
+            fichier.close()
+            return
+    fichier = open('scores.txt', 'a', encoding='utf8')
+    fichier.write(chaine)
+    fichier.close()
+
 def main():
     """fonction globale avec pour objectif de faire fonctionner le programme"""
+    print("Bonjour,\n\
+Ce programme sert à générer 10 opérations de 3 types différents :\
+multiplication, addition et soustraction\n")
+    pseudo = lit_pseudo()
+    ancien_score = lit_ancien_score(pseudo)
+
     type_operation = operation()
 
     nombre_chiffre = lit_nombre_chiffre()
     valeur_max = int(nombre_chiffre * "9")
 
     temps_voulu = lit_temps_voulu()
-    temps_depart = time.time()
-    temps_maximum = temps_depart + temps_voulu
+    temps_maximum = time.time() + temps_voulu
 
     if type_operation == "addition":
         affiche_operation = donne_reponse_addition(valeur_max, temps_maximum)
@@ -165,9 +213,14 @@ def main():
     elif type_operation == "multiplication":
         affiche_operation = donne_reponse_multiplication(valeur_max, temps_maximum)
 
-    print(str(affiche_operation))
+    reponses_justes = affiche_operation
 
-    print(relancer_programme())
+    print("""Votre nombre de reponse(s) juste(s) est {}\n""".format(reponses_justes))
+    nouveau_score = ancien_score + reponses_justes
+    print("""Votre nouveau score est {}\n""".format(nouveau_score))
+    ecrit_nouveau_score(pseudo, nouveau_score)
+
+    relancer_programme()
 
 
 main()
