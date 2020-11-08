@@ -34,9 +34,9 @@ def lit_nombre_chiffre():
     return nombre_chiffre
 
 
-def affiche_addition(valeur_max, temps_maximum):
-    """affichage de 10 additions"""
-    reponses_juste = 0
+def donne_reponse_addition(valeur_max, temps_maximum):
+    """affiche les 10 additions puis donne le nombre de bonnes reponses"""
+    reponses_justes = 0
     compteur = 0
     while temps_maximum > time.time() and compteur < 10:
         valeur1 = randint(0, valeur_max)
@@ -53,14 +53,14 @@ merci d'écrire uniquement des chiffres ou nombres""")
             affiche_message()
             break
         if int(reponse_utilisateur) == int(calcul):
-            reponses_juste += 1
+            reponses_justes += 1
         compteur += 1
-    return("""Votre nombre de reponse(s) juste(s) est {}\n""".format(reponses_juste))
+    return("""Votre nombre de reponse(s) juste(s) est {}\n""".format(reponses_justes))
 
 
-def affiche_soustraction(valeur_max, temps_maximum):
-    """affichage de 10 soustraction"""
-    reponses_juste = 0
+def donne_reponse_soustraction(valeur_max, temps_maximum):
+    """affiche les 10 soustractions puis donne le nombre de bonnes reponses"""
+    reponses_justes = 0
     compteur = 0
     while temps_maximum > time.time() and compteur < 10:
         valeur1 = randint(0, valeur_max)
@@ -78,13 +78,13 @@ merci d'écrire uniquement des chiffres ou nombres""")
             affiche_message()
             break
         if int(reponse_utilisateur) == int(calcul):
-            reponses_juste += 1
+            reponses_justes += 1
         compteur += 1
-    return ("""Votre nombre de reponse(s) juste(s) est {}\n""".format(reponses_juste))
+    return ("""Votre nombre de reponse(s) juste(s) est {}\n""".format(reponses_justes))
 
-def affiche_multiplication(valeur_max, temps_maximum):
-    """affichage de 10 multiplication"""
-    reponses_juste = 0
+def donne_reponse_multiplication(valeur_max, temps_maximum):
+    """affiche les 10 multiplications puis donne le nombre de bonnes reponses"""
+    reponses_justes = 0
     compteur = 0
     while temps_maximum > time.time() and compteur < 10:
         valeur1 = randint(0, valeur_max)
@@ -101,9 +101,9 @@ merci d'écrire uniquement des chiffres ou nombres""")
             affiche_message()
             break
         if int(reponse_utilisateur) == int(calcul):
-            reponses_juste += 1
+            reponses_justes += 1
         compteur += 1
-    return ("""Votre nombre de reponse(s) juste(s) est {}\n""".format(reponses_juste))
+    return ("""Votre nombre de reponse(s) juste(s) est {}\n""".format(reponses_justes))
 
 def relancer_programme():
     """sert à relancer le programme si l'utilisateur le souhaite"""
@@ -159,11 +159,11 @@ def main():
     temps_maximum = temps_depart + temps_voulu
 
     if type_operation == "addition":
-        affiche_operation = affiche_addition(valeur_max, temps_maximum)
+        affiche_operation = donne_reponse_addition(valeur_max, temps_maximum)
     elif type_operation == "soustraction":
-        affiche_operation = affiche_soustraction(valeur_max, temps_maximum)
+        affiche_operation = donne_reponse_soustraction(valeur_max, temps_maximum)
     elif type_operation == "multiplication":
-        affiche_operation = affiche_multiplication(valeur_max, temps_maximum)
+        affiche_operation = donne_reponse_multiplication(valeur_max, temps_maximum)
 
     print(str(affiche_operation))
 
@@ -171,4 +171,3 @@ def main():
 
 
 main()
-#décomposer les affiche_... car ces fonctions doivent juste afficher
